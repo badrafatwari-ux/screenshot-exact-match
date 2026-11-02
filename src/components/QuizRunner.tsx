@@ -24,7 +24,7 @@ export function QuizRunner({ questions, title, onFinish, sourceLabel }: Props) {
   const [pairMap, setPairMap] = useState<Record<number, number>>({});
   const [matchingRevealed, setMatchingRevealed] = useState(false);
 
-  const q = questions[index];
+  const q = questions[index]!;
 
   function reset() {
     setIndex(0);
@@ -129,6 +129,13 @@ export function QuizRunner({ questions, title, onFinish, sourceLabel }: Props) {
 
   const progressPct = ((index + (revealed ? 1 : 0)) / questions.length) * 100;
 
+  const correctOpt = selected === q.correctIndex ? q.options?.[q.correctIndex ?? -1] : undefined;
+  const pickedOpt = selected !== null ? q.options?.[selected] : undefined;
+  const whyText =
+    selected === q.correctIndex
+      ? (correctOpt?.feedback ?? q.explanation)
+      : `${pickedOpt?.feedback ? `${pickedOpt.feedback} ` : ""}${q.explanation}`;
+
   return (
     <div className="bps-card p-5">
       <div className="mb-3 flex items-center justify-between">
@@ -187,9 +194,7 @@ export function QuizRunner({ questions, title, onFinish, sourceLabel }: Props) {
         <div className="mt-4 rounded-xl border border-gold/40 bg-gold/10 p-3">
           <p className="text-sm text-foreground">
             <span className="font-extrabold text-gold-foreground">Why: </span>
-            {selected === q.correctIndex
-              ? q.options?.[q.correctIndex ?? 0]?.feedback ?? q.explanation
-              : `${q.options?.[selected ?? 0]?.feedback ? `${q.options[selected].feedback} ` : ""}${q.explanation}`}
+            {whyText}
           </p>
         </div>
       )}
@@ -273,7 +278,7 @@ function MatchingBody({
                 <span className="font-semibold">{p.right}</span>
                 {owner && !revealed && (
                   <span className="mt-0.5 block text-[10px] font-bold text-gold-foreground">
-                    ↔ {pairs[Number(owner[0])].left}
+                    ↔ {pairs[Number(owner[0])]!.left}
                   </span>
                 )}
               </button>

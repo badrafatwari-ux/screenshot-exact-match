@@ -1,14 +1,14 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import type { QueryClient } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
+  Link,
+  Outlet,
   useRouter,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
+import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import { useEffect, type ReactNode } from "react";
-import type { QueryClient } from "@tanstack/react-query";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";

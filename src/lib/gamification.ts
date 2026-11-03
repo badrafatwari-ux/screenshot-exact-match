@@ -27,15 +27,22 @@ export const LEVELS: LevelDef[] = [
 
 export function levelFor(xp: number): { level: number; title: string } {
   let idx = 0;
-  for (let i = 0; i < LEVELS.length; i++) if (xp >= LEVELS[i].min) idx = i;
-  return { level: idx + 1, title: LEVELS[idx].title };
+  for (let i = 0; i < LEVELS.length; i++) {
+    const def = LEVELS[i]!;
+    if (xp >= def.min) idx = i;
+  }
+  return { level: idx + 1, title: LEVELS[idx]!.title };
 }
 
 export function nextLevelProgress(xp: number): { pct: number; nextTitle: string; remaining: number } {
-  const current = LEVELS.findLastIndex((l) => xp >= l.min);
+  let current = 0;
+  for (let i = 0; i < LEVELS.length; i++) {
+    const def = LEVELS[i]!;
+    if (xp >= def.min) current = i;
+  }
   const next = LEVELS[current + 1];
   if (!next) return { pct: 100, nextTitle: "", remaining: 0 };
-  const floor = LEVELS[current].min;
+  const floor = LEVELS[current]!.min;
   const pct = Math.round(((xp - floor) / (next.min - floor)) * 100);
   return { pct: Math.min(100, Math.max(0, pct)), nextTitle: next.title, remaining: next.min - xp };
 }

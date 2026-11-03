@@ -50,3 +50,14 @@ export interface Module {
   lessons: Lesson[];
   exam: QuizQuestion[];
 }
+
+export interface GlossaryEntry {
+  term: string;
+  /** One-sentence plain definition. */
+  simple: string;
+  /** Detailed academic explanation. */
+  detailed: string;
+  /** Practical real-world example. */
+  example: string;
+  category: "core" | "systems" | "power" | "ideology" | "democracy" | "international" | "everyday";
+}

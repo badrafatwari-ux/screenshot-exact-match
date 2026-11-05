@@ -89,7 +89,7 @@ function Index() {
         />
         {continueModule && continueLesson ? (
           <Link
-            to="/learn/$moduleId_/$lessonId"
+            to="/learn/$moduleId/$lessonId"
             params={{ moduleId: continueModule.id, lessonId: continueLesson.id }}
             className="bps-card block p-4 transition-shadow hover:shadow-[var(--shadow-lift)]"
           >
@@ -159,7 +159,7 @@ function Index() {
             return (
               <Link
                 key={m.id}
-                to="/learn/$moduleId_"
+                to="/learn/$moduleId"
                 params={{ moduleId: m.id }}
                 className="bps-card flex items-center gap-3 p-4 transition-shadow hover:shadow-[var(--shadow-lift)]"
               >

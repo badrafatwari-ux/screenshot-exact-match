@@ -55,7 +55,7 @@ function LearnIndex() {
             return (
               <Link
                 key={m.id}
-                to="/learn/$moduleId_"
+                to="/learn/$moduleId"
                 params={{ moduleId: m.id }}
                 className="bps-card block p-4 transition-shadow hover:shadow-[var(--shadow-lift)]"
               >

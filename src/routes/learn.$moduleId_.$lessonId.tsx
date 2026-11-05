@@ -62,7 +62,7 @@ function LessonPage() {
   return (
     <div className="space-y-6 px-4 pt-6">
       <Link
-        to="/learn/$moduleId_"
+        to="/learn/$moduleId"
         params={{ moduleId: module.id }}
         className="inline-flex items-center gap-1 text-xs font-bold text-muted-foreground"
       >
@@ -247,7 +247,7 @@ function LessonPage() {
         <div className="grid grid-cols-2 gap-3">
           {prevLesson ? (
             <Link
-              to="/learn/$moduleId_/$lessonId"
+              to="/learn/$moduleId/$lessonId"
               params={{ moduleId: module.id, lessonId: prevLesson.id }}
               className="bps-card flex items-center gap-1.5 p-3 text-xs font-bold text-foreground"
             >
@@ -259,7 +259,7 @@ function LessonPage() {
           )}
           {nextLesson ? (
             <Link
-              to="/learn/$moduleId_/$lessonId"
+              to="/learn/$moduleId/$lessonId"
               params={{ moduleId: module.id, lessonId: nextLesson.id }}
               className="bps-card flex items-center justify-end gap-1.5 p-3 text-right text-xs font-bold text-foreground"
             >
@@ -268,7 +268,7 @@ function LessonPage() {
             </Link>
           ) : (
             <Link
-              to="/learn/$moduleId_"
+              to="/learn/$moduleId"
               params={{ moduleId: module.id }}
               className="bps-card flex items-center justify-end gap-1.5 p-3 text-right text-xs font-bold text-foreground"
             >

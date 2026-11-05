@@ -6,8 +6,8 @@ export function SectionHeading({
   action,
 }: {
   title: string;
-  subtitle?: string;
-  action?: ReactNode;
+  subtitle?: string | undefined;
+  action?: ReactNode | undefined;
 }) {
   return (
     <div className="mb-3 flex items-end justify-between gap-3">

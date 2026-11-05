@@ -77,7 +77,7 @@ function ModulePage() {
             return (
               <Link
                 key={lesson.id}
-                to="/learn/$moduleId_/$lessonId"
+                to="/learn/$moduleId/$lessonId"
                 params={{ moduleId: module.id, lessonId: lesson.id }}
                 className="bps-card block p-4 transition-shadow hover:shadow-[var(--shadow-lift)]"
               >
@@ -137,7 +137,7 @@ function ModulePage() {
 
       {nextModule && (
         <Link
-          to="/learn/$moduleId_"
+          to="/learn/$moduleId"
           params={{ moduleId: nextModule.id }}
           className="bps-card flex items-center justify-between p-4"
         >

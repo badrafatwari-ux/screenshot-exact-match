@@ -10,15 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as ExploreComparisonsRouteImport } from './routes/explore.comparisons'
+import { Route as ExploreDictionaryRouteImport } from './routes/explore.dictionary'
+import { Route as ExplorePowerStructureRouteImport } from './routes/explore.power-structure'
+import { Route as ExploreSimulatorRouteImport } from './routes/explore.simulator'
+import { Route as ExploreThinkersRouteImport } from './routes/explore.thinkers'
+import { Route as ExploreTimelineRouteImport } from './routes/explore.timeline'
 import { Route as LearnModuleIdRouteImport } from './routes/learn.$moduleId_'
 import { Route as LearnModuleIdLessonIdRouteImport } from './routes/learn.$moduleId_.$lessonId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnRoute = LearnRouteImport.update({
@@ -36,6 +48,36 @@ const ProgressRoute = ProgressRouteImport.update({
   path: '/progress',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExploreComparisonsRoute = ExploreComparisonsRouteImport.update({
+  id: '/comparisons',
+  path: '/comparisons',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExploreDictionaryRoute = ExploreDictionaryRouteImport.update({
+  id: '/dictionary',
+  path: '/dictionary',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExplorePowerStructureRoute = ExplorePowerStructureRouteImport.update({
+  id: '/power-structure',
+  path: '/power-structure',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExploreSimulatorRoute = ExploreSimulatorRouteImport.update({
+  id: '/simulator',
+  path: '/simulator',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExploreThinkersRoute = ExploreThinkersRouteImport.update({
+  id: '/thinkers',
+  path: '/thinkers',
+  getParentRoute: () => ExploreRoute,
+} as any)
+const ExploreTimelineRoute = ExploreTimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => ExploreRoute,
+} as any)
 const LearnModuleIdRoute = LearnModuleIdRouteImport.update({
   id: '/$moduleId_',
   path: '/$moduleId',
@@ -49,26 +91,47 @@ const LearnModuleIdLessonIdRoute = LearnModuleIdLessonIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRouteWithChildren
   '/learn': typeof LearnRouteWithChildren
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/explore/comparisons': typeof ExploreComparisonsRoute
+  '/explore/dictionary': typeof ExploreDictionaryRoute
+  '/explore/power-structure': typeof ExplorePowerStructureRoute
+  '/explore/simulator': typeof ExploreSimulatorRoute
+  '/explore/thinkers': typeof ExploreThinkersRoute
+  '/explore/timeline': typeof ExploreTimelineRoute
   '/learn/$moduleId': typeof LearnModuleIdRouteWithChildren
   '/learn/$moduleId/$lessonId': typeof LearnModuleIdLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRouteWithChildren
   '/learn': typeof LearnRouteWithChildren
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/explore/comparisons': typeof ExploreComparisonsRoute
+  '/explore/dictionary': typeof ExploreDictionaryRoute
+  '/explore/power-structure': typeof ExplorePowerStructureRoute
+  '/explore/simulator': typeof ExploreSimulatorRoute
+  '/explore/thinkers': typeof ExploreThinkersRoute
+  '/explore/timeline': typeof ExploreTimelineRoute
   '/learn/$moduleId': typeof LearnModuleIdRouteWithChildren
   '/learn/$moduleId/$lessonId': typeof LearnModuleIdLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRouteWithChildren
   '/learn': typeof LearnRouteWithChildren
   '/profile': typeof ProfileRoute
   '/progress': typeof ProgressRoute
+  '/explore/comparisons': typeof ExploreComparisonsRoute
+  '/explore/dictionary': typeof ExploreDictionaryRoute
+  '/explore/power-structure': typeof ExplorePowerStructureRoute
+  '/explore/simulator': typeof ExploreSimulatorRoute
+  '/explore/thinkers': typeof ExploreThinkersRoute
+  '/explore/timeline': typeof ExploreTimelineRoute
   '/learn/$moduleId_': typeof LearnModuleIdRouteWithChildren
   '/learn/$moduleId_/$lessonId': typeof LearnModuleIdLessonIdRoute
 }
@@ -76,31 +139,53 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/explore'
     | '/learn'
     | '/profile'
     | '/progress'
+    | '/explore/comparisons'
+    | '/explore/dictionary'
+    | '/explore/power-structure'
+    | '/explore/simulator'
+    | '/explore/thinkers'
+    | '/explore/timeline'
     | '/learn/$moduleId'
     | '/learn/$moduleId/$lessonId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/explore'
     | '/learn'
     | '/profile'
     | '/progress'
+    | '/explore/comparisons'
+    | '/explore/dictionary'
+    | '/explore/power-structure'
+    | '/explore/simulator'
+    | '/explore/thinkers'
+    | '/explore/timeline'
     | '/learn/$moduleId'
     | '/learn/$moduleId/$lessonId'
   id:
     | '__root__'
     | '/'
+    | '/explore'
     | '/learn'
     | '/profile'
     | '/progress'
+    | '/explore/comparisons'
+    | '/explore/dictionary'
+    | '/explore/power-structure'
+    | '/explore/simulator'
+    | '/explore/thinkers'
+    | '/explore/timeline'
     | '/learn/$moduleId_'
     | '/learn/$moduleId_/$lessonId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExploreRoute: typeof ExploreRouteWithChildren
   LearnRoute: typeof LearnRouteWithChildren
   ProfileRoute: typeof ProfileRoute
   ProgressRoute: typeof ProgressRoute
@@ -113,6 +198,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn': {
@@ -136,6 +228,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgressRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/explore/comparisons': {
+      id: '/explore/comparisons'
+      path: '/comparisons'
+      fullPath: '/explore/comparisons'
+      preLoaderRoute: typeof ExploreComparisonsRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/dictionary': {
+      id: '/explore/dictionary'
+      path: '/dictionary'
+      fullPath: '/explore/dictionary'
+      preLoaderRoute: typeof ExploreDictionaryRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/power-structure': {
+      id: '/explore/power-structure'
+      path: '/power-structure'
+      fullPath: '/explore/power-structure'
+      preLoaderRoute: typeof ExplorePowerStructureRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/simulator': {
+      id: '/explore/simulator'
+      path: '/simulator'
+      fullPath: '/explore/simulator'
+      preLoaderRoute: typeof ExploreSimulatorRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/thinkers': {
+      id: '/explore/thinkers'
+      path: '/thinkers'
+      fullPath: '/explore/thinkers'
+      preLoaderRoute: typeof ExploreThinkersRouteImport
+      parentRoute: typeof ExploreRoute
+    }
+    '/explore/timeline': {
+      id: '/explore/timeline'
+      path: '/timeline'
+      fullPath: '/explore/timeline'
+      preLoaderRoute: typeof ExploreTimelineRouteImport
+      parentRoute: typeof ExploreRoute
+    }
     '/learn/$moduleId_': {
       id: '/learn/$moduleId_'
       path: '/$moduleId'
@@ -152,6 +286,27 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface ExploreRouteChildren {
+  ExploreComparisonsRoute: typeof ExploreComparisonsRoute
+  ExploreDictionaryRoute: typeof ExploreDictionaryRoute
+  ExplorePowerStructureRoute: typeof ExplorePowerStructureRoute
+  ExploreSimulatorRoute: typeof ExploreSimulatorRoute
+  ExploreThinkersRoute: typeof ExploreThinkersRoute
+  ExploreTimelineRoute: typeof ExploreTimelineRoute
+}
+
+const ExploreRouteChildren: ExploreRouteChildren = {
+  ExploreComparisonsRoute: ExploreComparisonsRoute,
+  ExploreDictionaryRoute: ExploreDictionaryRoute,
+  ExplorePowerStructureRoute: ExplorePowerStructureRoute,
+  ExploreSimulatorRoute: ExploreSimulatorRoute,
+  ExploreThinkersRoute: ExploreThinkersRoute,
+  ExploreTimelineRoute: ExploreTimelineRoute,
+}
+
+const ExploreRouteWithChildren =
+  ExploreRoute._addFileChildren(ExploreRouteChildren)
 
 interface LearnModuleIdRouteChildren {
   LearnModuleIdLessonIdRoute: typeof LearnModuleIdLessonIdRoute
@@ -177,6 +332,7 @@ const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExploreRoute: ExploreRouteWithChildren,
   LearnRoute: LearnRouteWithChildren,
   ProfileRoute: ProfileRoute,
   ProgressRoute: ProgressRoute,

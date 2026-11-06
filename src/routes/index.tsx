@@ -1,8 +1,10 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
-import { MODULES, findModule } from "@/data/modules";
+import { createFileRoute } from "@tanstack/react-router";
+import { MODULES } from "@/data/modules";
 import { lessonKey, useProgress } from "@/state/progress";
 import { Link } from "@tanstack/react-router";
 import { Chip, ProgressBar, ProgressRing, SectionHeading } from "@/components/common";
+import { DailyChallengeCard, DailyConceptCard } from "@/components/DailyCards";
+import { computeEarnedBadges } from "@/lib/gamification";
 import {
   Award,
   BookOpen,
@@ -14,7 +16,6 @@ import {
   Sparkles,
   Trophy,
 } from "lucide-react";
-import { QuizRunner } from "@/components/QuizRunner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,9 +48,6 @@ function Index() {
 
   const totalLessons = MODULES.reduce((n, m) => n + m.lessons.length, 0);
   const completedPct = totalLessons > 0 ? Math.round((done.size / totalLessons) * 100) : 0;
-
-  const dailyConcept = hydrated ? null : null; // placeholder replaced below after hydration
-  void dailyConcept;
 
   return (
     <div className="space-y-6 px-4 pt-6">
@@ -209,13 +207,9 @@ function Index() {
         </p>
       </div>
 
-      {notFoundUsage}
     </div>
   );
 }
-
-const notFoundUsage = null;
-void notFound;
 
 function SnapshotRow({
   icon: Icon,
@@ -238,6 +232,5 @@ function SnapshotRow({
 
 /** Lazy: computed in parent scope to avoid importing gamification twice. */
 function earnedBadgeCount(state: Parameters<typeof import("@/lib/gamification")["computeEarnedBadges"]>[0]): number {
-  return 0;
+  return computeEarnedBadges(state).length;
 }
-void earnedBadgeCount;

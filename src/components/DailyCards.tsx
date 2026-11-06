@@ -8,6 +8,8 @@ export function DailyConceptCard() {
   const [open, setOpen] = useState(false);
   const entry = dailyConcept();
 
+  if (!entry) return null;
+
   return (
     <div className="bps-card p-4">
       <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-gold-foreground">
